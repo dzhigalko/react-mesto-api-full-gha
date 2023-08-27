@@ -1,0 +1,36 @@
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db:/data/db
+  compass:
+    image: mongo-express
+    restart: always
+    ports:
+      - "28081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+      ME_CONFIG_MONGODB_URL: mongo://mongo:27017/
+    depends_on:
+      - mongo
+  app:
+    image: node:18
+    restart: always
+    volumes:
+      - ./:/app
+    working_dir: "/app"
+    command:
+      - "npm"
+      - "run"
+      - "start"
+    ports:
+      - "33000:3000"
+    environment:
+      DB_URL: "mongodb://mongo:27017/mestodb"
+    depends_on:
+      - mongo
