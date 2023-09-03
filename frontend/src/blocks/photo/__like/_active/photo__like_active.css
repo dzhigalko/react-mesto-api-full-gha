@@ -1,0 +1,5 @@
+.photo__like_active {
+    background: url(../../../../images/like-active.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}

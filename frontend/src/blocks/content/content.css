@@ -1,0 +1,19 @@
+.content {
+    width: calc(100% - 2*200px);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1279px) {
+    .content {
+        width: calc(100% - 2*90px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .content {
+        width: calc(100% - 2*19px);
+    }
+}

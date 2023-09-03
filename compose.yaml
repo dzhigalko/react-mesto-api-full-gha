@@ -18,20 +18,35 @@ services:
       ME_CONFIG_MONGODB_URL: mongo://mongo:27017/
     depends_on:
       - mongo
-  app:
+  backend:
     image: node:18
     restart: always
     volumes:
-      - ./:/app
+      - ./backend:/app
     working_dir: "/app"
     command:
       - "/bin/sh"
       - "-c"
       - |
         npm i && npm run start
+    env_file:
+      - ".env"
     ports:
       - "33000:3000"
     environment:
       DB_URL: "mongodb://mongo:27017/mestodb"
     depends_on:
       - mongo
+  frontend:
+    restart: always
+    build:
+      context: frontend
+      args:
+        - NODE_ENV=$NODE_ENV
+        - REACT_APP_API_URL=$REACT_APP_API_URL
+    ports:
+      - "80:80"
+    env_file:
+      - ".env"
+    depends_on:
+      - backend

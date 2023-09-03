@@ -12,7 +12,7 @@ const NotFoundError = require('./utils/NotFoundError');
 const {
   PORT = 3000,
   DB_URL = 'mongodb://localhost:27017/mestodb',
-  JWT_SECRET_KEY = 'jwt-super-secret-key',
+  JWT_SECRET = 'jwt-super-secret-key',
   JWT_TTL = '7d',
 } = process.env;
 
@@ -21,7 +21,7 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use((req, res, next) => {
-  req.jwtSecret = JWT_SECRET_KEY;
+  req.jwtSecret = JWT_SECRET;
   req.jwtTTL = JWT_TTL;
   next();
 });

@@ -1,0 +1,8 @@
+.popup__image-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    margin: 0 auto;
+}

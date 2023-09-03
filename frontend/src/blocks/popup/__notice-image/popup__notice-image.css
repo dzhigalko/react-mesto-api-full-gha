@@ -1,0 +1,11 @@
+.popup__notice-image {
+    max-width: 120px;
+    margin: 26px auto 0;
+    justify-content: center;
+}
+
+@media  screen and (max-width: 767px) {
+    .popup__notice-image {
+        margin: 16px auto 0;
+    }
+}

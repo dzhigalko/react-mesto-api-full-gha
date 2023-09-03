@@ -1,0 +1,6 @@
+.photo__info {
+   display: flex;
+   justify-content: space-between;
+   padding: 22px 20px 22px 21px;
+   margin: 0;
+}

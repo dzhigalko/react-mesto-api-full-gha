@@ -1,0 +1,8 @@
+.login__page {
+    width: calc(100% - 2*200px);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    box-sizing: border-box;
+    align-items: center
+}
