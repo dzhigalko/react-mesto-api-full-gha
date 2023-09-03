@@ -23,6 +23,7 @@ services:
       ME_CONFIG_MONGODB_URL: mongo://mongo:27017/
     depends_on:
       - mongo
+
   backend:
     profiles:
       - default

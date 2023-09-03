@@ -27,7 +27,6 @@ app.use(cors({
   origin: allowedCorsDomains,
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   credentials: true,
-  preflightContinue: true,
 }));
 
 app.use((req, res, next) => {

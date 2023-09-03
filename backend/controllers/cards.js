@@ -5,7 +5,7 @@ const ForbiddenError = require('../utils/ForbiddenError');
 const constants = require('../utils/constants');
 
 const getCards = (req, res, next) => {
-  Card.find({})
+  Card.find({}).sort({ createdAt: -1 })
     .then((cards) => res.send(cards))
     .catch(next);
 };

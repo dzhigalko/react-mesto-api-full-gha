@@ -5,7 +5,7 @@ import Api from "../../utils/Api";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ApiProvider({ children }) {
-  const [apiToken, setApiToken] = useState(localStorage.getItem('userToken') || null)
+  const [apiToken, setApiToken] = useState(localStorage.getItem('userToken') || '')
   const api = useMemo(function () {
     return new Api({ baseUrl: apiUrl, token: apiToken })
   }, [apiToken, apiUrl])
