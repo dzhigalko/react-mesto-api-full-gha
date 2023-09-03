@@ -2,6 +2,11 @@ server {
     listen 80 default_server;
     server_name ${FRONTEND_DOMAIN};
 
+
+    location /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html/certbot;
+    }
+
     location ~ / {
        root /usr/share/nginx/html;
        try_files $uri /index.html;

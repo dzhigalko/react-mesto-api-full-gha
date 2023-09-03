@@ -1,12 +1,17 @@
 services:
   mongo:
+    profiles:
+      - default
     image: mongo
     restart: always
     ports:
       - "27017:27017"
     volumes:
       - ./db:/data/db
+
   compass:
+    profiles:
+      - default
     image: mongo-express
     restart: always
     ports:
@@ -19,6 +24,8 @@ services:
     depends_on:
       - mongo
   backend:
+    profiles:
+      - default
     image: node:18
     restart: always
     volumes:
@@ -37,7 +44,10 @@ services:
       DB_URL: "mongodb://mongo:27017/mestodb"
     depends_on:
       - mongo
+
   frontend:
+    profiles:
+      - default
     restart: always
     build:
       context: frontend
@@ -50,3 +60,20 @@ services:
       - ".env"
     depends_on:
       - backend
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - certbot-www:/usr/share/nginx/html/certbot
+
+  certbot:
+    image: certbot/certbot
+    restart: no
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - certbot-www:/usr/share/nginx/html/certbot
+
+volumes:
+  certbot-etc:
+  certbot-var:
+  certbot-www:
