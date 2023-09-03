@@ -11,3 +11,17 @@ server {
        try_files $uri /index.html;
     }
 }
+
+server {
+    listen 443 default_server ssl;
+
+    server_name ${FRONTEND_DOMAIN};
+
+    ssl_certificate /etc/letsencrypt/live/mesto.dzhigalko.nomoredomainsicu.ru/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mesto.dzhigalko.nomoredomainsicu.ru/privkey.pem;
+
+    location ~ / {
+       root /usr/share/nginx/html;
+       try_files $uri /index.html;
+    }
+}
