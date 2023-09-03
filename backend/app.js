@@ -9,6 +9,7 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const errors = require('./middlewares/errors');
 const NotFoundError = require('./utils/NotFoundError');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const {
   PORT = 3000,
@@ -35,6 +36,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(requestLogger);
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -47,6 +50,8 @@ app.use('/users', auth, usersRouter);
 app.use('/cards', auth, cardsRouter);
 
 app.use((req, _, next) => next(new NotFoundError(`Path ${req.path} not found`)));
+
+app.use(errorLogger);
 
 app.use(celebrateErrors());
 app.use(errors);
