@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.64.17
+IP 158.160.64.17
 
 Frontend https://mesto.dzhigalko.nomoredomainsicu.ru/
 
